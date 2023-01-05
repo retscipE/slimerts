@@ -2,11 +2,13 @@ import commands from '../commands'
 import { Command } from '../types'
 import { EditReply, event, Reply } from '../utils'
 
+// Maps the commands into a simple to use array
 const allCommands = commands.map(({ commands }) => commands).flat()
 const allCommandsMap = new Map<string, Command>(
   allCommands.map((c) => [c.meta.name, c])
 )
 
+// Create an event that runs when a slash command is detected by the client
 export default event('interactionCreate', async (
   {
     log,

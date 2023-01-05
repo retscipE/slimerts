@@ -1,7 +1,10 @@
 import { ClientEvents, Awaitable, Client } from 'discord.js';
 import { type } from 'os';
 
+// Create Type for Logger
 type LoggerFunction = (...args: unknown[]) => void
+
+// Export types to define events
 export interface EventProps {
     client: Client
     log: LoggerFunction

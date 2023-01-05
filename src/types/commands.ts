@@ -6,7 +6,10 @@ import {
   SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js'
 
+// Logger function again...
 type LoggerFunction = (...args: unknown[]) => void
+
+// Export types to build commands
 export interface CommandProps {
   interaction: ChatInputCommandInteraction
   client: Client

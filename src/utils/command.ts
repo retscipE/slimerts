@@ -5,6 +5,7 @@ import {
     CommandMeta,
   } from '../types'
   
+  // Create a function that takes the meta data and the execution and merges into a command
   export function command(meta: CommandMeta, exec: CommandExec): Command {
     return {
       meta,
@@ -12,6 +13,7 @@ import {
     }
   }
   
+  // Create function to assign commands into a category
   export function category(name: string, commands: Command[]): CommandCategory {
     return {
       name,

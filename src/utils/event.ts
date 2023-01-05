@@ -8,6 +8,7 @@ export function event<T extends EventKeys>(id: T, exec: EventExec<T>): Event<T> 
   }
 }
 
+// Use a function to register events into the bot
 export function registerEvents(client: Client, events: Event<any>[]): void {
   for (const event of events)
     client.on(event.id, event.exec.bind(null, {
