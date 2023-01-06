@@ -22,6 +22,7 @@ export default command(meta, ({ interaction }) => {
             { content: `Successfully banned **${member.user.tag}** from **${interaction.guild!.name}** for **${reason}**` }
         ))
         targetToBan!.user.send(`You were banned from **${interaction.guild!.name}** for **${reason}**`)
+          .catch((err) => interaction.reply({ content: "Could not dm user", ephemeral: true }))
     } else {
         interaction.reply(
             { content: "This user is not bannable!", ephemeral: true }
