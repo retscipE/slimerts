@@ -21,6 +21,7 @@ export default command(meta, ({ interaction }) => {
         targetToKick!.kick(reason).then((member) => interaction.reply(
             { content: `Successfully kicked **${member.user.tag}** from **${interaction.guild?.name}** for **${reason}**` }
         ))
+        targetToKick!.user.send(`You were kicked from **${interaction.guild!.name}** for **${reason}**`)
     } else {
         interaction.reply(
             { content: "This user is not kickable!", ephemeral: true }
