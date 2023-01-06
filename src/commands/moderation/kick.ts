@@ -22,7 +22,7 @@ export default command(meta, ({ interaction }) => {
             { content: `Successfully kicked **${member.user.tag}** from **${interaction.guild?.name}** for **${reason}**` }
         ))
         targetToKick!.user.send(`You were kicked from **${interaction.guild!.name}** for **${reason}**`)
-          .catch((err) => interaction.reply({ content: "Could not dm user", ephemeral: true }))
+          .catch((err) => {})
     } else {
         interaction.reply(
             { content: "This user is not kickable!", ephemeral: true }
