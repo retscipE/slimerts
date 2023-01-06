@@ -3,6 +3,7 @@ import {
     CommandCategory,
     CommandExec,
     CommandMeta,
+    CommandCategoryExtra
   } from '../types'
   
   // Create a function that takes the meta data and the execution and merges into a command
@@ -14,9 +15,10 @@ import {
   }
   
   // Create function to assign commands into a category
-  export function category(name: string, commands: Command[]): CommandCategory {
+  export function category(name: string, description: string, commands: Command[]): CommandCategory {
     return {
       name,
-      commands
+      commands,
+      description
     }
   }
