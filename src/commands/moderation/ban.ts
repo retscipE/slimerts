@@ -18,11 +18,11 @@ export default command(meta, ({ interaction }) => {
 
     const targetToBan = interaction.guild!.members.cache.get(targetUser.id)
     if (targetToBan!.bannable) {
-        targetToBan!.ban({ reason: reason }).then((member) => interaction.reply(
-            { content: `Successfully banned **${member.user.tag}** from **${interaction.guild!.name}** for **${reason}**` }
-        ))
-        targetToBan!.user.send(`You were banned from **${interaction.guild!.name}** for **${reason}**`)
+        targetUser.send(`You were banned from **${interaction.guild!.name}** for **${reason}**`)
           .catch((err) => {})
+        targetToBan!.ban({ reason: reason }).then((member) => interaction.reply(
+          { content: `Successfully banned **${member.user.tag}** from **${interaction.guild!.name}** for **${reason}**` }
+        ))
     } else {
         interaction.reply(
             { content: "This user is not bannable!", ephemeral: true }

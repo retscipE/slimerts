@@ -18,11 +18,11 @@ export default command(meta, ({ interaction }) => {
 
     const targetToKick = interaction.guild!.members.cache.get(targetUser.id)
     if (targetToKick!.kickable) {
-        targetToKick!.kick(reason).then((member) => interaction.reply(
-            { content: `Successfully kicked **${member.user.tag}** from **${interaction.guild?.name}** for **${reason}**` }
-        ))
-        targetToKick!.user.send(`You were kicked from **${interaction.guild!.name}** for **${reason}**`)
+        targetUser.send(`You were kicked from **${interaction.guild!.name}** for **${reason}**`)
           .catch((err) => {})
+        targetToKick!.kick(reason).then((member) => interaction.reply(
+          { content: `Successfully kicked **${member.user.tag}** from **${interaction.guild?.name}** for **${reason}**` }
+        ))
     } else {
         interaction.reply(
             { content: "This user is not kickable!", ephemeral: true }
