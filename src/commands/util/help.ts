@@ -67,3 +67,5 @@ const helpEvent = event(
 
   await interaction.editReply({ embeds: [embed] })
 })
+
+export { help, helpEvent }
