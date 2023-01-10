@@ -22,9 +22,13 @@ export type CommandMeta =
   | SlashCommandBuilder
   | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">
   | SlashCommandSubcommandsOnlyBuilder
+export type CommandCooldown =
+  | number
+  | string
 export interface Command {
   meta: CommandMeta
   exec: CommandExec
+  cooldown?: CommandCooldown
 }
 
 export interface CommandCategoryExtra {

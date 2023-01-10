@@ -3,14 +3,15 @@ import {
     CommandCategory,
     CommandExec,
     CommandMeta,
-    CommandCategoryExtra
+    CommandCooldown
   } from '../types'
   
   // Create a function that takes the meta data and the execution and merges into a command
-  export function command(meta: CommandMeta, exec: CommandExec): Command {
+  export function command(meta: CommandMeta, exec: CommandExec, cooldown?: CommandCooldown): Command {
     return {
       meta,
       exec,
+      cooldown
     }
   }
   

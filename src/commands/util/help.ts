@@ -4,19 +4,22 @@ import { command, event } from '../../utils'
 import categories from '../../commands'
 
 const meta = new SlashCommandBuilder()
-  .setName('help')
-  .setDescription('Show all the commands within the bot')
+  .setName("help")
+  .setDescription("Show all the commands within the bot");
 
 const help = command(meta, ({ interaction }) => {
   const embed = new EmbedBuilder()
     .setColor("Navy")
-    .setAuthor({ name: "Slimer.TS Help Menu", iconURL: interaction.client.user.displayAvatarURL() })
+    .setAuthor({
+      name: "Slimer.TS Help Menu",
+      iconURL: interaction.client.user.displayAvatarURL(),
+    });
 
   const menu = new StringSelectMenuBuilder()
     .setCustomId("help_select_menu")
     .setPlaceholder("No menu selected")
     .setMaxValues(1)
-    .setMinValues(1)
+    .setMinValues(1);
 
   categories.forEach((category) => {
     menu.addOptions([
@@ -39,9 +42,11 @@ const help = command(meta, ({ interaction }) => {
   interaction.reply({ components: [row], embeds: [embed] })
 })
 
-const helpEvent = event('interactionCreate', async ({ log, client }, interaction) => {
-  if (!interaction.isStringSelectMenu()) return;
-  if (!(interaction.customId === "help_select_menu")) return;
+const helpEvent = event(
+  "interactionCreate",
+  async ({ log, client }, interaction) => {
+    if (!interaction.isStringSelectMenu()) return;
+    if (!(interaction.customId === "help_select_menu")) return;
 
   const embed = new EmbedBuilder()
     .setColor("Navy")
@@ -62,5 +67,3 @@ const helpEvent = event('interactionCreate', async ({ log, client }, interaction
 
   await interaction.editReply({ embeds: [embed] })
 })
-
-export { help, helpEvent }

@@ -15,6 +15,6 @@ export default command(meta, ({ interaction }) => {
 
 import { category } from '../../utils'
 
-export default category("", [
+export default category("", "", [
     
 ])

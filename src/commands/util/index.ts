@@ -10,4 +10,4 @@ export default category("Utility", "Utility commands that help with server neces
   role,
   forceAddMembers,
   help,
-]);
+])

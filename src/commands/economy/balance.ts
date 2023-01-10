@@ -1,5 +1,5 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
-import { command, UserModel, IUser } from "../../utils";
+import { command, UserModel } from "../../utils";
 
 const meta = new SlashCommandBuilder()
   .setName("balance")
