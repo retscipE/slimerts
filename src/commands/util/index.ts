@@ -5,7 +5,7 @@ import role from "./role";
 import { help } from './help'
 
 // TODO: Comments on Utility commands
-export default category("Utility", [
+export default category("Utility", "Utility commands that help with server necessities.", [
   botinfo,
   role,
   forceAddMembers,
