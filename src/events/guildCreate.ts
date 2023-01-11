@@ -2,7 +2,7 @@ import { event, UserModel } from '../utils'
 
 // Registers all current members in a guild to the database (could destroy the bot if in big server idk)
 export default event('guildCreate', ({ log }, guild) => {
-    guild.members.cache.forEach((member) => {
+    guild.members.cache.forEach(async (member) => {
         if (member.user.bot) {
             return;
         }
@@ -16,6 +16,6 @@ export default event('guildCreate', ({ log }, guild) => {
             }
         )
 
-        newUser.save()
+        await newUser.save()
     })
 })
