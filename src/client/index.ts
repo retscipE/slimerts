@@ -1,4 +1,4 @@
-import { Collection, GatewayIntentBits, Partials } from 'discord.js'
+import { GatewayIntentBits, Partials } from 'discord.js'
 import SlimerClient from './SlimerClient'
 import { registerEvents } from '../utils'
 import events from '../events'
