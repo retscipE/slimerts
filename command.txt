@@ -2,6 +2,7 @@
 
 import { SlashCommandBuilder } from 'discord.js'
 import { command } from '../../utils'
+import ms from 'ms'
 
 const meta = new SlashCommandBuilder()
   .setName('')
