@@ -6,10 +6,11 @@ import {
   } from '../types'
   
   // Create a function that takes the meta data and the execution and merges into a command
-  export function command(meta: CommandMeta, exec: CommandExec): Command {
+  export function command(meta: CommandMeta, exec: CommandExec, cooldown?: number): Command {
     return {
       meta,
       exec,
+      cooldown
     }
   }
   

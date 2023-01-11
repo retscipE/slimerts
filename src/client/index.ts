@@ -1,9 +1,10 @@
-import { Client, GatewayIntentBits, Partials } from 'discord.js'
+import { Collection, GatewayIntentBits, Partials } from 'discord.js'
+import SlimerClient from './SlimerClient'
 import { registerEvents } from '../utils'
 import events from '../events'
 import keys from '../keys'
 
-const client = new Client({
+const client = new SlimerClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,

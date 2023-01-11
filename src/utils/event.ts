@@ -1,5 +1,5 @@
 import { Event, EventExec, EventKeys } from '../types'
-import { Client } from 'discord.js'
+import SlimerClient from '../client/SlimerClient'
 
 export function event<T extends EventKeys>(id: T, exec: EventExec<T>): Event<T> {
   return {
@@ -9,7 +9,7 @@ export function event<T extends EventKeys>(id: T, exec: EventExec<T>): Event<T> 
 }
 
 // Use a function to register events into the bot
-export function registerEvents(client: Client, events: Event<any>[]): void {
+export function registerEvents(client: SlimerClient, events: Event<any>[]): void {
   for (const event of events)
     client.on(event.id, event.exec.bind(null, {
       client,

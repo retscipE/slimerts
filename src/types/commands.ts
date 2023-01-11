@@ -1,10 +1,10 @@
 import {
   Awaitable,
-  Client,
   ChatInputCommandInteraction,
   SlashCommandBuilder,
   SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js'
+import SlimerClient from '../client/SlimerClient'
 
 // Logger function again...
 type LoggerFunction = (...args: unknown[]) => void
@@ -12,7 +12,7 @@ type LoggerFunction = (...args: unknown[]) => void
 // Export types to build commands
 export interface CommandProps {
   interaction: ChatInputCommandInteraction
-  client: Client
+  client: SlimerClient
   log: LoggerFunction
 }
 
@@ -25,6 +25,7 @@ export type CommandMeta =
 export interface Command {
   meta: CommandMeta
   exec: CommandExec
+  cooldown?: number
 }
 
 export interface CommandCategoryExtra {

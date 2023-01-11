@@ -1,4 +1,5 @@
-import { ClientEvents, Awaitable, Client } from 'discord.js';
+import { ClientEvents, Awaitable } from 'discord.js';
+import SlimerClient from '../client/SlimerClient'
 import { type } from 'os';
 
 // Create Type for Logger
@@ -6,7 +7,7 @@ type LoggerFunction = (...args: unknown[]) => void
 
 // Export types to define events
 export interface EventProps {
-    client: Client
+    client: SlimerClient
     log: LoggerFunction
 }
 
