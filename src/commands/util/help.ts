@@ -65,7 +65,7 @@ const helpEvent = event(
     }
   })
 
-  await interaction.editReply({ embeds: [embed] })
+  await interaction.reply({ embeds: [embed], ephemeral: true })
 })
 
 export { help, helpEvent }
