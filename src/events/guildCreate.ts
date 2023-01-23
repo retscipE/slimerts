@@ -14,7 +14,8 @@ export default event('guildCreate', ({ log }, guild) => {
                         userId: member.user.id,
                         guildId: guild.id,
                         username: member.user.username,
-                        balance: 0
+                        balance: 0,
+                        rank: "Default"
                     }
                 )
         

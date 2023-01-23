@@ -14,6 +14,7 @@ export default command(meta, ({ interaction }) => {
           guildId: member.guild.id,
           username: member.user.username,
           balance: 0,
+          rank: "Default"
         });
 
         await newUser.save();
