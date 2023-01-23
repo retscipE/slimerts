@@ -1,6 +1,6 @@
 import commands from '../commands'
 import { Command } from '../types'
-import { EditReply, event, Reply } from '../utils'
+import { event, Reply, EditReply } from '../utils'
 import ms from 'ms';
 
 // Maps the commands into a simple to use array
@@ -60,13 +60,9 @@ export default event('interactionCreate', async (
         log('[Command Error] ', error)
 
         if (interaction.deferred) {
-            interaction.editReply(
-                EditReply.error('Something went wrong :(')
-            )
+            EditReply(interaction, "Something went wrong! Please try again later.", "❌")
         }
 
-        interaction.reply(
-            Reply.error("Something went wrong :(")
-        )
+        Reply(interaction, "Something went wrong! Please try again later.", "❌")
     }
 })

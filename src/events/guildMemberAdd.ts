@@ -14,7 +14,8 @@ export default event('guildMemberAdd', async ({ log, client }, member) => {
             userId: member.user.id,
             guildId: member.guild.id,
             username: member.user.username,
-            balance: 0
+            balance: 0,
+            rank: "Default"
         }
     )
     await newUser.save()

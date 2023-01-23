@@ -3,6 +3,10 @@ import { resolve } from 'path'
 
 config({ path: resolve(__dirname, '..', '..', '.env') })
 
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 import { REST, Routes, APIUser } from 'discord.js'
 import commands from '../commands'
 import keys from '../keys'
@@ -22,6 +26,8 @@ async function main() {
     ? Routes.applicationCommands(currentUser.id)
     : Routes.applicationGuildCommands(currentUser.id, keys.testGuild)
 
+  await rest.put(endpoint, { body: [] })
+  await delay(1000)
   await rest.put(endpoint, { body })
 
   return currentUser
