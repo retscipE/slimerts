@@ -2,7 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { command, UserModel } from "../../utils";
 
 const meta = new SlashCommandBuilder()
-  .setName("balance")
+  .setName("profile")
   .setDescription("Get either yours or another person's profile.")
   .addUserOption((options) =>
     options

@@ -29,7 +29,7 @@ export default command(meta, ({ interaction }) => {
       iconURL: interaction.client.user.displayAvatarURL(),
     })
     .setFooter({
-      text: "Created by Epicster#0001",
+      text: "Created by Epicster#6593",
       iconURL:
         interaction.client.users.cache
           .get("544646066579046401")

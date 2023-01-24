@@ -26,8 +26,9 @@ async function main() {
     ? Routes.applicationCommands(currentUser.id)
     : Routes.applicationGuildCommands(currentUser.id, keys.testGuild)
 
-  await rest.put(endpoint, { body: [] })
-  await delay(1000)
+  rest.put(endpoint, { body: [] })
+    .catch(console.error);
+
   await rest.put(endpoint, { body })
 
   return currentUser

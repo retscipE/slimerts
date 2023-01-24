@@ -28,7 +28,7 @@ export default command(meta, ({ interaction }) => {
     });
   } else {
     return interaction.reply({
-      content: "Only Epicster#0001 can use this command!",
+      content: "Only Epicster#6593 can use this command!",
       ephemeral: true,
     });
   }

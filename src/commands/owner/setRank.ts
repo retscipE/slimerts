@@ -15,8 +15,8 @@ const meta = new SlashCommandBuilder()
     sliced.forEach((rank) => {
         return option.addChoices(
             {
-                name: rank.name,
-                value: rank.value
+              name: rank.name,
+              value: rank.value
             }
         )
     })
@@ -25,18 +25,26 @@ const meta = new SlashCommandBuilder()
 
    
 export default command(meta, async ({ interaction }) => {
-    const target: User = interaction.options.getUser("target", true);
-    const rank: string = interaction.options.getString("rank", true);
+    const targetOption: User = interaction.options.getUser("target", true);
+    const rankOption = interaction.options.get("rank", true);
 
-    const search = { userId: target.id, guildId: interaction.guild!.id }
-    const change = { $set: { rank: rank } }
+    const rank = sliced.find(e => e.value === rankOption.value) as IRankChoice
+
+    const search = { userId: targetOption.id, guildId: interaction.guild!.id }
+    const change = { $set: { rank: rank.name } }
 
     if (interaction.user.id === "544646066579046401")  {
-        // const user = await UserModel.findOneAndUpdate(search, change)
-        interaction.reply({ content: `${rank}` })
+      if (targetOption.bot) {
+        interaction.reply({ content: "This user is a bot and cannot receive a rank" })
+      } else {
+        await UserModel.findOneAndUpdate(search, change)
+        await interaction.deferReply({ ephemeral: true })
+
+        interaction.reply({ content: `Successfully gave **${targetOption.username}** the **${rank.name}** rank!` })
+      }
     } else {
         return interaction.reply({
-          content: "Only Epicster#0001 can use this command!",
+          content: "Only Epicster#6593 can use this command!",
           ephemeral: true,
         });
     }
