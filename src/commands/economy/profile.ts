@@ -18,7 +18,15 @@ export default command(meta, async ({ interaction }) => {
     guildId: interaction.guild!.id,
   });
 
-  
+  const embed = new EmbedBuilder()
+    .setAuthor({ name: `${user.username}'s Profile in ${interaction.guild!.name}` })
+    .setThumbnail(user.displayAvatarURL())
+    .addFields(
+      { name: "Rank", value: `${userData!.rank}`, inline: true },
+      { name: "Balance", value: `${userData!.balance} coins`, inline: true },
+      { name: "User ID", value: `${user.id}`, inline: true },
+    )
+    .setColor("DarkNavy")
 
-  interaction.reply({ embeds: [] });
+  interaction.reply({ embeds: [embed] });
 });

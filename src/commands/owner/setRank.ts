@@ -38,7 +38,6 @@ export default command(meta, async ({ interaction }) => {
         interaction.reply({ content: "This user is a bot and cannot receive a rank" })
       } else {
         await UserModel.findOneAndUpdate(search, change)
-        await interaction.deferReply({ ephemeral: true })
 
         interaction.reply({ content: `Successfully gave **${targetOption.username}** the **${rank.name}** rank!` })
       }
