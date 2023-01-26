@@ -2,6 +2,7 @@ import commands from '../commands'
 import { Command } from '../types'
 import { event, Reply, EditReply } from '../utils'
 import ms from 'ms';
+import ownerCmds from '../commands/owner';
 
 // Maps the commands into a simple to use array
 const allCommands = commands.map(({ commands }) => commands).flat()
@@ -24,36 +25,43 @@ export default event('interactionCreate', async (
         const command = allCommandsMap.get(cmdName);
 
         if (!command) throw new Error('Command not found.')
-        
-        if (command.cooldown) {
-            if (client.cooldown.has(`${interaction.user.id}-${interaction.commandName}`)) {
-                interaction.reply({ 
-                    content: `You are on cooldown for this command! ` + ms(client.cooldown.get(`${interaction.user.id}-${interaction.commandName}`)! - Date.now(), { long: true }) + " left.",
-                    ephemeral: true
-                })
-                return
-            }
 
-            await command.exec({
-                client,
-                interaction,
-                log(...args) {
-                    log(`[${command.meta.name}]`, ...args)
-                },
-            })
-            client.cooldown.set(`${interaction.user.id}-${interaction.commandName}`, Date.now() + command.cooldown)
-
-            setTimeout(() => {
-                client.cooldown.delete(`${interaction.user.id}-${interaction.commandName}`)
-            }, command.cooldown)
+        if (ownerCmds.commands.includes(command) && interaction.user.id !== "544646066579046401") {
+            interaction.reply({
+                content: "Only Epicster#6593 can use this command!",
+                ephemeral: true,
+            });
         } else {
-            await command.exec({
-                client,
-                interaction,
-                log(...args) {
-                    log(`[${command.meta.name}]`, ...args)
-                },
-            })
+            if (command.cooldown) {
+                if (client.cooldown.has(`${interaction.user.id}-${interaction.commandName}`)) {
+                    interaction.reply({ 
+                        content: `You are on cooldown for this command! ` + ms(client.cooldown.get(`${interaction.user.id}-${interaction.commandName}`)! - Date.now(), { long: true }) + " left.",
+                        ephemeral: true
+                    })
+                    return
+                }
+    
+                await command.exec({
+                    client,
+                    interaction,
+                    log(...args) {
+                        log(`[${command.meta.name}]`, ...args)
+                    },
+                })
+                client.cooldown.set(`${interaction.user.id}-${interaction.commandName}`, Date.now() + command.cooldown)
+    
+                setTimeout(() => {
+                    client.cooldown.delete(`${interaction.user.id}-${interaction.commandName}`)
+                }, command.cooldown)
+            } else {
+                await command.exec({
+                    client,
+                    interaction,
+                    log(...args) {
+                        log(`[${command.meta.name}]`, ...args)
+                    },
+                })
+            }
         }
         
     } catch (error) {
