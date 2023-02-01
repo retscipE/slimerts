@@ -3,6 +3,7 @@ import botinfo from "./botinfo";
 import role from "./role";
 import { help } from './help'
 import embed from './embed'
+import suggest from './suggest'
 
 // TODO: Comments on Utility commands
 export default category("Utility", "Utility commands that help with server necessities.", [
@@ -10,4 +11,5 @@ export default category("Utility", "Utility commands that help with server neces
   role,
   help,
   embed,
+  suggest,
 ])
