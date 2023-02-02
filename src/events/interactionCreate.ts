@@ -32,35 +32,39 @@ export default event('interactionCreate', async (
                 ephemeral: true,
             });
         } else {
-            if (command.cooldown) {
-                if (client.cooldown.has(`${interaction.user.id}-${interaction.commandName}`)) {
-                    interaction.reply({ 
-                        content: `You are on cooldown for this command! ` + ms(client.cooldown.get(`${interaction.user.id}-${interaction.commandName}`)! - Date.now(), { long: true }) + " left.",
-                        ephemeral: true
-                    })
-                    return
-                }
-    
-                await command.exec({
-                    client,
-                    interaction,
-                    log(...args) {
-                        log(`[${command.meta.name}]`, ...args)
-                    },
-                })
-                client.cooldown.set(`${interaction.user.id}-${interaction.commandName}`, Date.now() + command.cooldown)
-    
-                setTimeout(() => {
-                    client.cooldown.delete(`${interaction.user.id}-${interaction.commandName}`)
-                }, command.cooldown)
+            if (command.inTesting && interaction.channel!.id !== "1062804875773214791") {
+                await interaction.reply({ content: `This command is in testing and must be used in the testing commands channel within the Support Server!`, ephemeral: true })
             } else {
-                await command.exec({
-                    client,
-                    interaction,
-                    log(...args) {
-                        log(`[${command.meta.name}]`, ...args)
-                    },
-                })
+                if (command.cooldown) {
+                    if (client.cooldown.has(`${interaction.user.id}-${interaction.commandName}`)) {
+                        interaction.reply({ 
+                            content: `You are on cooldown for this command! ` + ms(client.cooldown.get(`${interaction.user.id}-${interaction.commandName}`)! - Date.now(), { long: true }) + " left.",
+                            ephemeral: true
+                        })
+                        return
+                    }
+        
+                    await command.exec({
+                        client,
+                        interaction,
+                        log(...args) {
+                            log(`[${command.meta.name}]`, ...args)
+                        },
+                    })
+                    client.cooldown.set(`${interaction.user.id}-${interaction.commandName}`, Date.now() + command.cooldown)
+        
+                    setTimeout(() => {
+                        client.cooldown.delete(`${interaction.user.id}-${interaction.commandName}`)
+                    }, command.cooldown)
+                } else {
+                    await command.exec({
+                        client,
+                        interaction,
+                        log(...args) {
+                            log(`[${command.meta.name}]`, ...args)
+                        },
+                    })
+                }
             }
         }
         

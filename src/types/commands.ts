@@ -26,6 +26,7 @@ export interface Command {
   meta: CommandMeta
   exec: CommandExec
   cooldown?: number
+  inTesting?: boolean
 }
 
 export interface CommandCategoryExtra {
