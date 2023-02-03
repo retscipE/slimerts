@@ -5,6 +5,7 @@ import profile from './profile'
 import coinflip from './coinflip'
 import work from './work'
 import beg from './beg'
+import { buyrank } from './buyrank'
 
 // TODO: Comments on Economy commands
 export default category("Economy", "Commands to have fun in a server", [
@@ -14,4 +15,5 @@ export default category("Economy", "Commands to have fun in a server", [
     coinflip,
     work,
     beg,
+    buyrank,
 ])
