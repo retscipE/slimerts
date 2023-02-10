@@ -7,24 +7,24 @@ import { event, UserModel } from '../utils'
 export default event('guildMemberAdd', async ({ log, client }, member) => {
     if (member.user.bot) {
         return;
-    }
+    } else {
+        const newUser = new UserModel(
+            {
+                userId: member.user.id,
+                guildId: member.guild.id,
+                username: member.user.username,
+                balance: 0,
+                rank: "Default"
+            }
+        )
+        await newUser.save()
     
-    const newUser = new UserModel(
-        {
-            userId: member.user.id,
-            guildId: member.guild.id,
-            username: member.user.username,
-            balance: 0,
-            rank: "Default"
+        if (member.guild.id === "1062791278095511633") {
+            await member.roles.add("1062793368591155200")
+    
+            const channel = client.channels.cache.get("1062795863480615082")! as TextChannel
+    
+            channel.send({ content: `<@${member.user.id}> welcome to **${member.guild.name}**!` })
         }
-    )
-    await newUser.save()
-
-    if (member.guild.id === "1062791278095511633") {
-        await member.roles.add("1062793368591155200")
-
-        const channel = client.channels.cache.get("1062795863480615082")! as TextChannel
-
-        channel.send({ content: `<@${member.user.id}> welcome to **${member.guild.name}**!` })
     }
 })
