@@ -1,4 +1,5 @@
 import { model, Schema, SchemaType, connect, set, AnyObject, Document } from "mongoose";
+import { getModelForClass, prop } from "@typegoose/typegoose";
 
 export function startConnection(uri: string) {
     // Connect to the mongoose database and catch for errors
@@ -6,20 +7,32 @@ export function startConnection(uri: string) {
   set('strictQuery', true)
 }
 
-// Create interface to define the variable types in the model
-export interface IUser {
-    userId: string
-    username: string
-    guildId: string
-    balance: number
-    rank: string
+class Item {
+    @prop({ required: true })
+    public itemName!: string;
+
+    @prop({ required: true })
+    public itemId!: string;
 }
 
-// Create a model to use for mongoose
-export const UserModel = model("user", new Schema<IUser>({
-    userId: { type: String, required: true },
-    username: { type: String, required: true },
-    guildId: { type: String, required: true },
-    balance: { type: Number, required: true },
-    rank: { type: String, required: true }
-}))
+class User {
+    @prop({ required: true })
+    public userId!: string;
+
+    @prop({ required: true })
+    public username!: string;
+
+    @prop({ required: true })
+    public guildId!: string;
+
+    @prop({ required: true })
+    public balance!: number;
+
+    @prop({ required: true })
+    public rank!: string;
+
+    @prop({ required: true, type: () => [Item] })
+    public items!: Item[]
+}
+
+export const UserModel = getModelForClass(User)

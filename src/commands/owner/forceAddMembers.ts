@@ -8,12 +8,13 @@ const meta = new SlashCommandBuilder()
 export default command(meta, ({ interaction }) => {
   interaction.guild!.members.cache.forEach(async (member) => {
     if (!member.user.bot) {
-      const newUser = new UserModel({
+      const newUser = await UserModel.create({
         userId: member.user.id,
         guildId: member.guild.id,
         username: member.user.username,
         balance: 0,
-        rank: "Default"
+        rank: "Default",
+        items: []
       });
 
       await newUser.save();

@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/retscipE/slimerts#readme",
   "dependencies": {
+    "@acegoal07/discordjs-pagination": "^1.5.0",
+    "@typegoose/typegoose": "^10.1.1",
     "@types/node": "^18.11.18",
     "cross-env": "^7.0.3",
     "discord.js": "14.7.1",
@@ -33,6 +35,7 @@
     "typescript": "^4.9.4"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "@types/ms": "^0.7.31"
   }
 }
