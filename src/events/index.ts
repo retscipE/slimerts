@@ -6,6 +6,7 @@ import guildMemberRemove from './guildMemberRemove'
 import guildCreate from './guildCreate'
 import { helpEvent } from '../commands/util/help'
 import { buyRankEvent } from '../commands/economy/buyrank'
+import { buyItemEvent } from '../commands/economy/buyitem'
 
 // Assign the events into an array
 const events: Event<any>[] = [
@@ -16,6 +17,7 @@ const events: Event<any>[] = [
   guildCreate,
   helpEvent,
   buyRankEvent,
+  buyItemEvent,
 ]
 
 export default events

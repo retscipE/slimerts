@@ -44,7 +44,7 @@ const buyrank = command(meta, ({ interaction, client }) => {
 const buyRankEvent = event(
     "interactionCreate",
     async ({ log, client }, interaction) => {
-        const search = { userId: interaction.user.id, guildId: interaction.guild?.id }
+        const search = { userId: interaction.user.id, guildId: interaction.guild!.id }
 
         const user = await UserModel.findOne(search)
 
